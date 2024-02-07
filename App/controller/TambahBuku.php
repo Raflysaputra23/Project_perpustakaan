@@ -6,15 +6,14 @@ require_once 'Connection.php';
 class TambahBuku extends Connection {
 		private $id_buku,
 				$id_anggota,
-				$date_estimasi,
-				$id_peminjaman;
+				$date_estimasi;
+
 				
 
 		public function __construct($data){
 			$this->id_buku = $data['id_buku'];
 			$this->id_anggota = $data['id_anggota'];
 			$this->date_estimasi = $data['dates'];
-			$this->id_peminjaman = $data['id_peminjaman'];
 
 		}
 	public function tambahBukuId() {

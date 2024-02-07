@@ -3,6 +3,7 @@ require_once '../../init.php';
 
 $data = new SelectUser();
 $datas = $data->getUserDetail($_GET['id']);
+$ids = mysqli_fetch_assoc($data->getUserPinjam());
 
 
 ?>
@@ -22,7 +23,7 @@ $datas = $data->getUserDetail($_GET['id']);
 	</div>
 <hr>
 <a href="?url=proses_peminjaman.php" class="btn btn-primary"><i class="fa fa-arrow-left me-1"></i> Kembali</a>
-<form action="" method="post" class="row gx-0 border rounded-3 mt-4 p-3">
+<div class="row gx-0 border rounded-3 mt-4 p-3">
 	<div class="col-sm-4 pt-2">
 		<div class="form-group mb-4">
 			<label for="" class="mb-2">Nama Anggota</label>
@@ -47,8 +48,13 @@ $datas = $data->getUserDetail($_GET['id']);
 	</div>
 	<div class="col-sm-4 d-flex justify-content-center align-items-center flex-column grid gap-4">
 		<img src="../assets/img_buku/<?= $datas->gambar_buku?>" class="rounded-3" alt="" width="250px" height="250px">
-		<div class="form-group">
-			<a href="../../controller/HapusData.php?id_valid=<?= $_GET['id']?>" class="btn btn-success me-2">Terima</a>
+		<div class="form-group d-flex gap-3">
+			<form action="../../controller/HapusData.php?id_valid=<?= $_GET['id'] ?>" method="post">
+					<input type="hidden" name="id_buku" value="<?= $ids['id_buku']?>">
+					<input type="hidden" name="id_anggota" value="<?= $ids['id_anggota']?>">
+					<input type="hidden" name="estimasi_peminjaman" value="<?= $ids['estimasi_peminjaman']?>">
+					<button type="submit" name="tambah" class="btn btn-success">Terima</button>
+				</form>
 			<a href="../../controller/HapusData.php?id_invalid=<?= $_GET['id']?>" class="btn btn-danger">Tolak</a>
 		</div>
 	</div>
@@ -74,5 +80,5 @@ $datas = $data->getUserDetail($_GET['id']);
 			<input type="text" disabled value="<?= '['.$datas->tanggal_peminjaman. ']<-->[' .$datas->estimasi_peminjaman.']'?>" class="form-control">
 		</div>
 	</div>
-</form>
+</div>
 </div>

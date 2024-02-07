@@ -215,7 +215,7 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 							<div class="card overflow-hidden linear-red">
 								<div class="row">
 									<div class="col-7 d-flex flex-column align-items-center justify-content-between py-3">
-										<h3 class="fw-semibold"><?= mysqli_num_rows($data->getDataRiwayat())?></h3>
+										<h3 class="fw-semibold"><?= mysqli_num_rows($data->getDataRiwayat($_GET))?></h3>
 										<p>Dipinjam</p>
 									</div>
 									<div class="col-5 d-flex justify-content-start align-items-center position-relative">
@@ -246,6 +246,7 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 							 	</div>
 							</div>
 						</div>
+						<button class="btn btn-primary">klik</button>
 					</div>
 					<?php } ?>
 				</div>
