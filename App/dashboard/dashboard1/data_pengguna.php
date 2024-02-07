@@ -1,4 +1,10 @@
 <?php 
+
+
+if (!isset($_GET['url'])) {
+	header('location: ../../../index.php');
+}
+
 require_once '../../init.php';
 $datas = new SelectUser();
 $datass = $datas->getAllUser($_GET);

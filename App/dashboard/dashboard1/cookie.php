@@ -22,3 +22,14 @@ if (isset($_SESSION['buku0'])) {
 	header('location: dashboard_admin.php?url=tambah_buku.php');
 
 }
+if (isset($_SESSION['berhasill'])) {
+	setcookie('berhasilll',true, time() + 2, '/');
+	unset($_SESSION['berhasill']);
+	header('location: dashboard_admin.php?url=riwayat.php');
+}
+if (isset($_SESSION['gagall'])) {
+	setcookie('gagalll',true, time() + 2, '/');
+	unset($_SESSION['gagall']);
+	header('location: dashboard_admin.php?url=riwayat.php');
+
+}

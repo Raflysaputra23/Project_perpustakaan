@@ -1,5 +1,10 @@
 <?php 
 
+
+if (!isset($_GET['url'])) {
+	header('location: ../../../index.php');
+}
+
 require_once '../../init.php';
 
 $datas = new SelectBuku();
@@ -47,12 +52,15 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 		  
 		  
 		</svg>
-		<div class="alert alert-success d-flex align-items-center" role="alert">
-		  <svg class="bi flex-shrink-0 me-2" style="width: 25px; height: 25px;" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-		  <div>
-		    Permintaan diterima
-		  </div>
-		</div>
+		<div class="alert alert-success d-flex align-items-center justify-content-between" role="alert">
+			 <div class="d-flex">
+		 		 <svg class="bi flex-shrink-0 me-2" style="width: 25px; height: 25px;" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+		 	<div>
+		    	Permintaan diterima
+		    </div>
+		  	</div>
+				<a href="hapus_cookie.php" class="text-decoration-none text-black">X</a>
+			</div>
 	<?php endif;?>
 	
 
@@ -85,7 +93,7 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							    </div>
 							    <div class="col-md-7">
 							      <div class="card-body">
-							        <h5 class="card-title"><?= $data_book['judul_buku']?></h5>
+							        <h5 class="card-title text-capitalize"><?= $data_book['judul_buku']?></h5>
 							        <p class="card-text pt	-2">This is a wider</p>
 							      </div>
 							    </div>
@@ -100,6 +108,9 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							</div>
 						</div>
 				<?php endforeach ?>
+				<?php if (mysqli_num_rows($data_buku_komik) == 0): ?>
+					<h2 class="text-center text-capitalize" style="margin-top: 120px;"><i class="fa fa-search"></i> Not found</h2>
+				<?php endif ?>
 			<?php elseif($_GET['jenis_buku'] == 'sejarah') : ?>
 				<?php foreach ($data_buku_sejarah as $data_book): ?>
 						<div class="col-3">
@@ -110,7 +121,7 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							    </div>
 							    <div class="col-md-7">
 							      <div class="card-body">
-							        <h5 class="card-title"><?= $data_book['judul_buku']?></h5>
+							        <h5 class="card-title text-capitalize"><?= $data_book['judul_buku']?></h5>
 							        <p class="card-text pt	-2">This is a wider</p>
 							      </div>
 							    </div>
@@ -125,6 +136,9 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							</div>
 						</div>
 				<?php endforeach ?>
+				<?php if (mysqli_num_rows($data_buku_sejarah) == 0): ?>
+					<h2 class="text-center text-capitalize" style="margin-top: 120px;"><i class="fa fa-search"></i> Not found</h2>
+				<?php endif ?>
 			<?php elseif($_GET['jenis_buku'] == 'anime') : ?>
 				<?php foreach ($data_buku_anime as $data_book): ?>
 						<div class="col-3">
@@ -135,7 +149,7 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							    </div>
 							    <div class="col-md-7">
 							      <div class="card-body">
-							        <h5 class="card-title"><?= $data_book['judul_buku']?></h5>
+							        <h5 class="card-title text-capitalize"><?= $data_book['judul_buku']?></h5>
 							        <p class="card-text pt	-2">This is a wider</p>
 							      </div>
 							    </div>
@@ -150,6 +164,9 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							</div>
 						</div>
 				<?php endforeach ?>
+				<?php if (mysqli_num_rows($data_buku_anime) == 0): ?>
+					<h2 class="text-center text-capitalize" style="margin-top: 120px;"><i class="fa fa-search"></i> Not found</h2>
+				<?php endif ?>
 			<?php endif; ?>
 		<?php }else { ?>
 			<?php foreach ($data_buku as $data_book): ?>
@@ -162,7 +179,7 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							    </div>
 							    <div class="col-md-7">
 							      <div class="card-body">
-							        <h5 class="card-title"><?= $data_book['judul_buku']?></h5>
+							        <h5 class="card-title text-capitalize"><?= $data_book['judul_buku']?></h5>
 							        <p class="card-text pt	-2">This is a wider</p>
 							      </div>
 							    </div>
@@ -177,6 +194,9 @@ $data = mysqli_fetch_object($datas->getAllBuku());
 							</div>
 						</div>
 				<?php endforeach ?>
+				<?php if (mysqli_num_rows($data_buku) == 0): ?>
+					<h2 class="text-center text-capitalize" style="margin-top: 120px;"><i class="fa fa-search"></i> Not found</h2>
+				<?php endif ?>
 		<?php }?>
 	</div>
 </div>

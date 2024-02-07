@@ -1,9 +1,28 @@
 <?php 
 
+
+if (!isset($_GET['url'])) {
+	header('location: ../../../index.php');
+}
+
 require_once '../../init.php';
 
 $data = new SelectUser();
 $halaman  = $data->getDataRiwayat($_GET);
+
+if (isset($_GET['ids'])) {
+	$hapus = new HapusData($_GET['ids']);
+	$hapus_data = $hapus->HapusDataRiwayat();
+
+	if ($hapus_data > 0) {
+		$_SESSION['berhasill'] = true;
+		echo "<script>window.location.assign('cookie.php')</script>";
+	} else {
+		$_SESSION['gagall'] = true;
+		echo "<script>window.location.assign('cookie.php')</script>";
+
+	}
+}
 
 
 
@@ -23,6 +42,11 @@ $halaman  = $data->getDataRiwayat($_GET);
 	</div>
 <hr>
 <div class="container-fluid gx-0 border mt-5 pt-3 pb-1 px-3 rounded-3">
+	<?php if (isset($_COOKIE['berhasilll'])): ?>
+		<div id="berhasil"></div>
+	<?php elseif(isset($_COOKIE['gagalll'])): ?>
+		<div id="gagal"></div>
+	<?php endif;?>
 	<div class="row">
 		<form class="col-sm-6 controls" method="post" action="">
 			<div class="form-group control">
@@ -73,6 +97,7 @@ $halaman  = $data->getDataRiwayat($_GET);
 			      <th scope="col">No. Telp</th>
 			      <th scope="col">Judul Buku</th>
 			      <th scope="col">Estimasi Pengembalian</th>
+			      <th scope="col">Aksi</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -86,10 +111,16 @@ $halaman  = $data->getDataRiwayat($_GET);
 			      <td><?= $data_riwayat['no_telp'];?></td>
 			      <td><?= $data_riwayat['judul_buku'];?></td>
 			      <td class="text-center"><?= $data_riwayat['estimasi_peminjaman'];?></td>
+			      <td class="text-center">
+			      	<a href="?url=riwayat.php&ids=<?= $data_riwayat['id_riwayat']?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+			      </td>
 			    </tr>
 			  <?php $no++; } ?>
 			  </tbody>
 			</table>
+			<?php if (mysqli_num_rows($halaman) == 0): ?>
+					<h2 class="text-center text-capitalize mt-5 mb-5"><i class="fa fa-search"></i> Not found</h2>
+				<?php endif ?>
 		</div>
 	</div>
 

@@ -119,6 +119,13 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 									<a href="dashboard_admin.php?url=proses_peminjaman.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">Permintaan Peminjaman</a>
 									<a href="dashboard_admin.php?url=riwayat.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">History</a>
 							<?php break;
+								case 'tambah_buku.php': ?>
+									<a href="dashboard_admin.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">Dashboard</a>
+									<a href="dashboard_admin.php?url=data_pengguna.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">Data pengguna</a>
+									<a href="dashboard_admin.php?url=data_buku.php" class="btn btn-primary border-0 border-bottom border-primary py-4 position-relative prover-dashboard prover-buku">Daftar buku</a>
+									<a href="dashboard_admin.php?url=proses_peminjaman.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">Permintaan Peminjaman</a>
+									<a href="dashboard_admin.php?url=riwayat.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">History</a>
+							<?php break;
 							case 'halaman_pinjam.php': ?>
 									<a href="dashboard_admin.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">Dashboard</a>
 									<a href="dashboard_admin.php?url=data_pengguna.php" class="btn btn-outline-primary border-0 border-bottom border-primary py-4">Data pengguna</a>
@@ -246,7 +253,6 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 							 	</div>
 							</div>
 						</div>
-						<button class="btn btn-primary">klik</button>
 					</div>
 					<?php } ?>
 				</div>
@@ -273,6 +279,9 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 		const alertTolak = document.getElementById('alerttolak')
 		const tambahBuku1 = document.getElementById('tambahBuku1')
 		const tambahBuku0 = document.getElementById('tambahBuku0')
+		const berhasil = document.getElementById('berhasil')
+		const gagal = document.getElementById('gagal')
+
 
 
 			if (flash) {
@@ -390,6 +399,22 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 					if (result.isConfirmed) {
 						window.location.href = '?url=tambah_buku.php';
 					}
+				});
+			}
+			if (berhasil) {
+				Swal.fire({
+				  icon: "success",
+				  title: "Data Kamu berhasil dihapus",
+				  showConfirmButton: false,
+				  timer: 2000
+				});
+			}
+			if (gagal) {
+				Swal.fire({
+				  icon: "error",
+				  title: "Data Kamu gagal dihapus",
+				  showConfirmButton: false,
+				  timer: 2000
 				});
 			}
 

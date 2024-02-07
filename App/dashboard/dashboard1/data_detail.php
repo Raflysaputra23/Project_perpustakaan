@@ -1,4 +1,11 @@
 <?php 
+
+
+
+if (!isset($_GET['url'])) {
+	header('location: ../../../index.php');
+}
+
 require_once '../../init.php';
 
 $data = new SelectUser();

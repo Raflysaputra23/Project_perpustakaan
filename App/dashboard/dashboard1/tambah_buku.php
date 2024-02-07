@@ -1,5 +1,10 @@
 <?php 
 
+
+if (!isset($_GET['url'])) {
+	header('location: ../../../index.php');
+}
+
 require_once '../../init.php';
 
 
@@ -22,11 +27,12 @@ if (isset($_POST['tambah'])) {
 
  <div class="container-rafly px-5 py-4">
 	<div class="d-flex justify-content-between align-items-end">
-		<h2>Profil</h2>
+		<h2>Tambah Buku</h2>
 			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 				 <ol class="breadcrumb">
 					 <li class="breadcrumb-item">Home</li>
-					 <li class="breadcrumb-item active" aria-current="page">Profil</li>
+					 <li class="breadcrumb-item">Data Buku</li>
+					 <li class="breadcrumb-item active" aria-current="page">Tambah Buku</li>
 				 </ol>
 			</nav>
 	</div>
