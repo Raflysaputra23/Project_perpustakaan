@@ -417,6 +417,27 @@ $jumlah_buku = mysqli_num_rows($data_buku->getAllBuku());
 				  timer: 2000
 				});
 			}
+			
+			function uploadImage() {
+            const fileInput = document.getElementById('uploadInput');
+            const file = fileInput.files[0];
+            const preview = document.getElementById('preview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.style.maxWidth = '300px'; // set max width for preview
+                    preview.innerHTML = ''; // clear previous preview
+                    preview.appendChild(img);
+
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = 'Pilih file gambar terlebih dahulu.';
+            }
+        }
 
 
 

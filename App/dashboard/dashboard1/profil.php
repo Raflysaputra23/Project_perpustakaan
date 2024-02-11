@@ -35,9 +35,9 @@ $datas = $data->getUser();
 <div class="row gx-0">
 	<input type="hidden" name="gambar" value="<?= $datas->gambar_anggota?>">
 	<div class="col-sm-4 py-4 gx-0 position-relative d-flex justify-content-start align-items-center">
-		<img src="../assets/img_user/<?= $datas->gambar_anggota;?>" alt="" width="220px" height="220px" class="rounded-5 border border-black">
+		<img src="../assets/img_user/<?= $datas->gambar_anggota;?>" alt="" id="preview" width="220px" height="220px" class="rounded-5 border border-black">
 		<div class="overflow-hidden file bg-primary">
-			<input type="file" name="gambar" class="opacity-0">
+			<input type="file" id="uploadInput" name="gambar" class="opacity-0">
 			<i class="fa fa-camera position-absolute"></i>
 		</div>
 	</div>

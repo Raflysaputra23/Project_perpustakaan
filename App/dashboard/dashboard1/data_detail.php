@@ -1,7 +1,6 @@
 <?php 
 
 
-
 if (!isset($_GET['url'])) {
 	header('location: ../../../index.php');
 }
